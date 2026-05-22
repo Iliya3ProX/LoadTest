@@ -1,6 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
-
-namespace Balance.Domain;
+﻿namespace Balance.Domain;
 
 public class Balance
 {
