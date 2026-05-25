@@ -25,26 +25,28 @@
       </div>
 
       <h3>История операций</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Тип</th>
-            <th>Сумма</th>
-            <th>Sequence</th>
-            <th>Время</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="op in balanceStore.selectedBalance.operations" :key="op.id">
-            <td>{{ translateOperationType(op.type) }}</td>
-            <td :class="op.amount >= 0 ? 'balance-positive' : 'balance-negative'">
-              {{ formatAmount(op.amount) }}
-            </td>
-            <td>{{ op.sequenceNumber }}</td>
-            <td>{{ formatDate(op.created) }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Сумма</th>
+              <th>Порядковый номер</th>
+              <th>Время</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="op in balanceStore.selectedBalance.operations" :key="op.id">
+              <td>{{ translateOperationType(op.type) }}</td>
+              <td :class="op.amount >= 0 ? 'balance-positive' : 'balance-negative'">
+                {{ formatAmount(op.amount) }}
+              </td>
+              <td>{{ op.sequenceNumber }}</td>
+              <td>{{ formatDate(op.created) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div v-if="balanceStore.selectedBalance.operations.length === 0" class="loading">
         Операций пока нет
