@@ -2,6 +2,34 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balance", "Balance\Balance.csproj", "{73C8C34D-F6F9-4B16-9C74-6679C81DF63C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{86B430CE-9CAE-4185-B6BE-8C1584642895}"
+	ProjectSection(SolutionItems) = preProject
+		db\init.sql = db\init.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web-ui", "web-ui", "{DA34069F-4071-4963-B2F9-8F393E324B3D}"
+	ProjectSection(SolutionItems) = preProject
+		web-ui\src\api\balance.ts = web-ui\src\api\balance.ts
+		web-ui\src\App.vue = web-ui\src\App.vue
+		web-ui\src\assets\main.css = web-ui\src\assets\main.css
+		web-ui\src\main.ts = web-ui\src\main.ts
+		web-ui\src\router\index.ts = web-ui\src\router\index.ts
+		web-ui\src\stores\balance.ts = web-ui\src\stores\balance.ts
+		web-ui\src\types\api.ts = web-ui\src\types\api.ts
+		web-ui\src\views\BalanceDetailView.vue = web-ui\src\views\BalanceDetailView.vue
+		web-ui\src\views\HomeView.vue = web-ui\src\views\HomeView.vue
+		web-ui\src\vite-env.d.ts = web-ui\src\vite-env.d.ts
+		web-ui\.gitignore = web-ui\.gitignore
+		web-ui\.npmrc = web-ui\.npmrc
+		web-ui\Dockerfile = web-ui\Dockerfile
+		web-ui\index.html = web-ui\index.html
+		web-ui\nginx.conf = web-ui\nginx.conf
+		web-ui\package.json = web-ui\package.json
+		web-ui\tsconfig.json = web-ui\tsconfig.json
+		web-ui\tsconfig.node.json = web-ui\tsconfig.node.json
+		web-ui\vite.config.ts = web-ui\vite.config.ts
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
