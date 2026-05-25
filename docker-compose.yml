@@ -1,19 +1,8 @@
 services:
-  web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"
-    depends_on:
-      - balance
-    networks:
-      - loadtest-network
-
   balance:
     build:
-      context: ./Balance
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Balance/Dockerfile
     ports:
       - "5001:8080"
     environment:
