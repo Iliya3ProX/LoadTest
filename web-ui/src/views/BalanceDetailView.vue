@@ -36,7 +36,7 @@
         </thead>
         <tbody>
           <tr v-for="op in balanceStore.selectedBalance.operations" :key="op.id">
-            <td>{{ op.type }}</td>
+            <td>{{ translateOperationType(op.type) }}</td>
             <td :class="op.amount >= 0 ? 'balance-positive' : 'balance-negative'">
               {{ formatAmount(op.amount) }}
             </td>
@@ -118,6 +118,15 @@ function formatAmount(amount: number): string {
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleString('ru-RU');
+}
+
+function translateOperationType(type: string): string {
+  const translations: Record<string, string> = {
+    'Initial': 'Начальный',
+    'Deposit': 'Пополнение',
+    'Expense': 'Списание'
+  };
+  return translations[type] || type;
 }
 
 async function loadBalance() {
