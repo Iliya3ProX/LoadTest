@@ -1,15 +1,51 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: loadtest-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=balance_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - loadtest-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d balance_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   balance:
     build:
       context: .
       dockerfile: Balance/Dockerfile
-    ports:
-      - "5001:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__LoadTestPostgresContext=Host=postgres;Database=balance_db;Username=postgres;Password=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - loadtest-network
+
+  web-ui:
+    build:
+      context: ./web-ui
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - balance
+    networks:
+      - loadtest-network
+
+volumes:
+  postgres_data:
 
 networks:
   loadtest-network:

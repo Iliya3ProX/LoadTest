@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(mkdir *)",
+      "Bash(npm install)",
+      "Bash(docker-compose *)",
+      "Bash(dir *)",
+      "Bash(del *)",
+      "Bash(powershell *)",
+      "Bash(timeout *)"
+    ]
+  },
+  "$version": 4
+}
