@@ -1,15 +1,21 @@
 <template>
   <div class="container">
     <div class="card">
-      <div v-if="balanceStore.error" class="error">
-        {{ balanceStore.error }}
+      <div class="card-header">
+        <div v-if="balanceStore.error" class="error">
+          {{ balanceStore.error }}
+        </div>
+
+        <div v-if="balanceStore.loading" class="loading">
+          Загрузка...
+        </div>
+
+        <div v-if="!balanceStore.loading && balanceStore.balances.length === 0" class="loading">
+          Балансов пока нет. Создайте первый!
+        </div>
       </div>
 
-      <div v-if="balanceStore.loading" class="loading">
-        Загрузка...
-      </div>
-
-      <div v-else class="table-wrapper">
+      <div v-if="!balanceStore.loading && balanceStore.balances.length > 0" class="table-container">
         <table class="table">
           <thead>
             <tr>
@@ -35,10 +41,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div v-if="!balanceStore.loading && balanceStore.balances.length === 0" class="loading">
-        Балансов пока нет. Создайте первый!
       </div>
     </div>
   </div>

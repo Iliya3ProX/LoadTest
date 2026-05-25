@@ -9,23 +9,26 @@
     </div>
 
     <div v-if="!balanceStore.loading && balanceStore.selectedBalance" class="card">
-      <h2>Детали баланса</h2>
-      <p>
-        <strong>Текущий баланс:</strong>
-        <span :class="balanceStore.selectedBalance.amount >= 0 ? 'balance-positive' : 'balance-negative'">
-          {{ formatAmount(balanceStore.selectedBalance.amount) }}
-        </span>
-      </p>
+      <div class="card-header">
+        <h2>Детали баланса</h2>
+        <p>
+          <strong>Текущий баланс:</strong>
+          <span :class="balanceStore.selectedBalance.amount >= 0 ? 'balance-positive' : 'balance-negative'">
+            {{ formatAmount(balanceStore.selectedBalance.amount) }}
+          </span>
+        </p>
 
-      <div class="actions" style="margin: 20px 0; display: flex; gap: 10px;">
-        <button class="btn btn-success" @click="showDepositModal = true">Пополнить</button>
-        <button class="btn btn-danger" @click="showExpenseModal = true">Списать</button>
-        <button class="btn btn-primary" @click="trimBalance">Обрезать</button>
-        <router-link to="/" class="btn">Назад к списку</router-link>
+        <div class="actions" style="margin: 20px 0; display: flex; gap: 10px;">
+          <button class="btn btn-success" @click="showDepositModal = true">Пополнить</button>
+          <button class="btn btn-danger" @click="showExpenseModal = true">Списать</button>
+          <button class="btn btn-primary" @click="trimBalance">Обрезать</button>
+          <router-link to="/" class="btn">Назад к списку</router-link>
+        </div>
+
+        <h3>История операций</h3>
       </div>
 
-      <h3>История операций</h3>
-      <div class="table-wrapper">
+      <div class="table-container">
         <table class="table">
           <thead>
             <tr>
@@ -48,8 +51,8 @@
         </table>
       </div>
 
-      <div v-if="balanceStore.selectedBalance.operations.length === 0" class="loading">
-        Операций пока нет
+      <div v-if="balanceStore.selectedBalance.operations.length === 0" class="card-header">
+        <div class="loading">Операций пока нет</div>
       </div>
     </div>
 
