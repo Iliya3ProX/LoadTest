@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar">
       <div class="container">
-        <h1>Balance Service</h1>
+        <h1>Сервис балансов</h1>
       </div>
     </nav>
     <router-view />
