@@ -12,10 +12,10 @@
       <div class="card-header">
         <h2>Детали баланса</h2>
         <p>
-          <strong>Текущий баланс:</strong>
+          <strong>Текущий баланс: </strong>
           <span :class="balanceStore.selectedBalance.amount >= 0 ? 'balance-positive' : 'balance-negative'">
             {{ formatAmount(balanceStore.selectedBalance.amount) }}
-          </span>
+          </span> ({{ amountInWords }})
         </p>
 
         <div class="actions" style="margin: 20px 0; display: flex; gap: 10px;">
@@ -106,6 +106,7 @@
 import { ref, onMounted, watch, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useBalanceStore } from '@/stores/balance';
+import { digitInWords } from '@/api/digitInWords';
 
 const route = useRoute();
 const balanceStore = useBalanceStore();
@@ -116,6 +117,11 @@ const depositAmount = ref(0);
 const expenseAmount = ref(0);
 
 const balanceId = computed(() => route.params.id as string);
+
+const amountInWords = computed(() => {
+  if (!balanceStore.selectedBalance) return '';
+  return digitInWords(balanceStore.selectedBalance.amount);
+});
 
 function formatAmount(amount: number): string {
   return amount.toFixed(2);

@@ -1,5 +1,9 @@
 -- Create enum type for operation types
-CREATE TYPE IF NOT EXISTS op_type AS ENUM ('Initial', 'Deposit', 'Expense');
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'op_type') THEN
+    CREATE TYPE op_type AS ENUM ('Initial', 'Deposit', 'Expense');
+  END IF;
+END $$;
 
 -- Create balances table
 CREATE TABLE IF NOT EXISTS balances (
